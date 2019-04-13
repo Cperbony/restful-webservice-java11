@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE web-app
+        PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://www.oracle.com/webfolder/technetwork/jsc/dtd/web-app_2_3.dtd">
+
+<web-app>
+<!--    <servlet>-->
+<!--        <servlet-name>BasicServlet</servlet-name>-->
+<!--        <servlet-class>packt.com.BasicServlet</servlet-class>-->
+<!--    </servlet>-->
+
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>BasicServlet</servlet-name>-->
+<!--        <url-pattern>/</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+    <servlet>
+        <servlet-name>TodosServlet</servlet-name>
+        <servlet-class>packt.com.TodosServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TodosServlet</servlet-name>
+        <url-pattern>/todos</url-pattern>
+    </servlet-mapping>
+
+<!--    <servlet>-->
+<!--        <servlet-name>SecondServlet</servlet-name>-->
+<!--        <servlet-class>packt.com.SecondServlet</servlet-class>-->
+<!--    </servlet>-->
+
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>SecondServlet</servlet-name>-->
+<!--        <url-pattern>/second</url-pattern>-->
+<!--    </servlet-mapping>-->
+</web-app>
