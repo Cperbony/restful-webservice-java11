@@ -1,4 +1,4 @@
-package packt.com;
+package packt.com.basic;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

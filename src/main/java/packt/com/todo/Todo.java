@@ -1,4 +1,4 @@
-package packt.com;
+package packt.com.todo;
 
 public class Todo {
 
