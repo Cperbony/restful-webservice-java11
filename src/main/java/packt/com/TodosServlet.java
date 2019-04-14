@@ -7,25 +7,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
 public class TodosServlet extends HttpServlet {
 
     private static final Gson GSON = new GsonBuilder().create();
 
-    private Map<Long, Todo> todos = new HashMap<>();
-
-    public TodosServlet() {
-        todos.put(1L, new Todo(1L, "first Todo"));
-        todos.put(2L, new Todo(2L, "second Todo"));
-    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String json = GSON.toJson(todos.values());
+        String json = GSON.toJson(Todos.todos.values());
         resp.setStatus(200);
         resp.setHeader("Content-Type", "application/json");
         resp.getOutputStream().println(json);
@@ -36,7 +30,7 @@ public class TodosServlet extends HttpServlet {
         String json = readInputStream(req.getInputStream());
         Todo todo = GSON.fromJson(json, Todo.class);
 
-        todos.put(todo.getId(), todo);
+        Todos.todos.put(todo.getId(), todo);
 
         resp.setStatus(201);
         resp.setHeader("Content-Type", "application/json");

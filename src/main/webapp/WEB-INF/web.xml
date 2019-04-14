@@ -25,6 +25,16 @@
         <url-pattern>/todos</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>TodoServlet</servlet-name>
+        <servlet-class>packt.com.TodoServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TodoServlet</servlet-name>
+        <url-pattern>/todos/*</url-pattern>
+    </servlet-mapping>
+
 <!--    <servlet>-->
 <!--        <servlet-name>SecondServlet</servlet-name>-->
 <!--        <servlet-class>packt.com.SecondServlet</servlet-class>-->
