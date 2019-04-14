@@ -7,9 +7,12 @@ public class Todos {
 
     public static Map<Long, Todo> todos = new HashMap<>();
 
-    static  {
-            todos.put(1L, new Todo(1L, "first Todo"));
-            todos.put(2L, new Todo(2L, "second Todo"));
+    static {
+        todos.put(1L, new Todo(1L, "first Todo"));
+        todos.put(2L, new Todo(2L, "second Todo"));
     }
 
+    public static Long nextId() {
+        return todos.keySet().stream().reduce(Math::max).orElse(0L) + 1L;
+    }
 }

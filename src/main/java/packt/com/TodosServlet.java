@@ -7,11 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
 
 public class TodosServlet extends HttpServlet {
 
@@ -27,8 +23,10 @@ public class TodosServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String json = readInputStream(req.getInputStream());
+        String json = Util.readInputStream(req.getInputStream());
         Todo todo = GSON.fromJson(json, Todo.class);
+
+        todo.setId(Todos.nextId());
 
         Todos.todos.put(todo.getId(), todo);
 
@@ -37,7 +35,4 @@ public class TodosServlet extends HttpServlet {
         resp.getOutputStream().println(GSON.toJson(todo));
     }
 
-    private static String readInputStream(InputStream stream) {
-        return new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining("\n"));
-    }
 }
