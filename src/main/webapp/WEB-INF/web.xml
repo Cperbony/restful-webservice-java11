@@ -29,7 +29,7 @@
 
 <!--    <servlet>-->
 <!--        <servlet-name>TodosServlet</servlet-name>-->
-<!--        <servlet-class>packt.com.todo.TodosServlet</servlet-class>-->
+<!--        <servlet-class>packt.com.removed.TodosServlet</servlet-class>-->
 <!--    </servlet>-->
 
 <!--    <servlet-mapping>-->
@@ -39,7 +39,7 @@
 
 <!--    <servlet>-->
 <!--        <servlet-name>TodoServlet</servlet-name>-->
-<!--        <servlet-class>packt.com.todo.TodoServlet</servlet-class>-->
+<!--        <servlet-class>packt.com.removed.TodoServlet</servlet-class>-->
 <!--    </servlet>-->
 
 <!--    <servlet-mapping>-->

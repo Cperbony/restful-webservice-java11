@@ -1,10 +1,11 @@
-package packt.com.todo;
+package packt.com.removed;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import packt.com.Util;
+import packt.com.todo.Todo;
+import packt.com.todo.Todos;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,7 +55,7 @@ public class TodoServlet extends HttpServlet {
 
         if (!Todos.todos.containsKey(id)) {
             resp.setStatus(422);
-            resp.getOutputStream().println("You cannot update TODO with id " + id + " because it doesn't exists!");
+            resp.getOutputStream().println("You cannot update Todo with id " + id + " because it doesn't exists!");
         }
 
         String json = Util.readInputStream(req.getInputStream());
@@ -65,7 +66,7 @@ public class TodoServlet extends HttpServlet {
 
         resp.setStatus(200);
         resp.setHeader("Content-Type", "application/json");
-        resp.getOutputStream().println(GSON.toJson(json));
+        resp.getOutputStream().println(GSON.toJson(todo));
     }
 
     @Override

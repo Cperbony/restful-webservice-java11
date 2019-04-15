@@ -13,13 +13,23 @@ public class RouteServlet extends HttpServlet {
 
     private static final Map<RouteDefinition, RouteHandler> routes = new HashMap<>();
 
+    private static void addRoute(String route, RouteHandler handler) {
+        routes.put(new RouteDefinition(route), handler);
+    }
+
     static {
-        routes.put(new RouteDefinition("GET /todos"), TodosHandlers::listTodos);
-        routes.put(new RouteDefinition("GET /todos/:id"), TodosHandlers::fetchTodo);
-        routes.put(new RouteDefinition("POST /todos"), TodosHandlers::createTodoWithoutId);
-        routes.put(new RouteDefinition("POST /todos/id"), TodosHandlers::createTodoWithId);
-        routes.put(new RouteDefinition("PUT /todos/:id"), TodosHandlers::updateTodo);
-        routes.put(new RouteDefinition("DELETE /todos/:id"), TodosHandlers::deleteTodo);
+        addRoute("GET /todos", TodosHandlers::listTodos);
+        addRoute("GET /todos/:id", TodosHandlers::fetchTodo);
+        addRoute("POST /todos", TodosHandlers::createTodoWithoutId);
+        addRoute("POST /todos/id", TodosHandlers::createTodoWithId);
+        addRoute("PUT /todos/:id", TodosHandlers::updateTodo);
+        addRoute("DELETE /todos/:id", TodosHandlers::deleteTodo);
+
+        addRoute("GET /hello/:username", (req, resp) -> {
+            String username = req.getRequestURI().substring("/hello/".length());
+            resp.setStatus(200);
+            resp.getWriter().println("Hello " + username);
+        });
     }
 
     /*
