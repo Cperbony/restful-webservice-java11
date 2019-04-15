@@ -16,44 +16,54 @@
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>packt.com.auth.AuthFilter</filter-class>
+    </filter>
 
-<!--    <servlet>-->
-<!--        <servlet-name>BasicServlet</servlet-name>-->
-<!--        <servlet-class>packt.com.basic.BasicServlet</servlet-class>-->
-<!--    </servlet>-->
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>BasicServlet</servlet-name>-->
-<!--        <url-pattern>/</url-pattern>-->
-<!--    </servlet-mapping>-->
 
-<!--    <servlet>-->
-<!--        <servlet-name>TodosServlet</servlet-name>-->
-<!--        <servlet-class>packt.com.removed.TodosServlet</servlet-class>-->
-<!--    </servlet>-->
+    <!--    <servlet>-->
+    <!--        <servlet-name>BasicServlet</servlet-name>-->
+    <!--        <servlet-class>packt.com.basic.BasicServlet</servlet-class>-->
+    <!--    </servlet>-->
 
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>TodosServlet</servlet-name>-->
-<!--        <url-pattern>/todos</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>BasicServlet</servlet-name>-->
+    <!--        <url-pattern>/</url-pattern>-->
+    <!--    </servlet-mapping>-->
 
-<!--    <servlet>-->
-<!--        <servlet-name>TodoServlet</servlet-name>-->
-<!--        <servlet-class>packt.com.removed.TodoServlet</servlet-class>-->
-<!--    </servlet>-->
+    <!--    <servlet>-->
+    <!--        <servlet-name>TodosServlet</servlet-name>-->
+    <!--        <servlet-class>packt.com.removed.TodosServlet</servlet-class>-->
+    <!--    </servlet>-->
 
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>TodoServlet</servlet-name>-->
-<!--        <url-pattern>/todos/*</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>TodosServlet</servlet-name>-->
+    <!--        <url-pattern>/todos</url-pattern>-->
+    <!--    </servlet-mapping>-->
 
-<!--    <servlet>-->
-<!--        <servlet-name>SecondServlet</servlet-name>-->
-<!--        <servlet-class>packt.com.basic.SecondServlet</servlet-class>-->
-<!--    </servlet>-->
+    <!--    <servlet>-->
+    <!--        <servlet-name>TodoServlet</servlet-name>-->
+    <!--        <servlet-class>packt.com.removed.TodoServlet</servlet-class>-->
+    <!--    </servlet>-->
 
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>SecondServlet</servlet-name>-->
-<!--        <url-pattern>/second</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>TodoServlet</servlet-name>-->
+    <!--        <url-pattern>/todos/*</url-pattern>-->
+    <!--    </servlet-mapping>-->
+
+    <!--    <servlet>-->
+    <!--        <servlet-name>SecondServlet</servlet-name>-->
+    <!--        <servlet-class>packt.com.basic.SecondServlet</servlet-class>-->
+    <!--    </servlet>-->
+
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>SecondServlet</servlet-name>-->
+    <!--        <url-pattern>/second</url-pattern>-->
+    <!--    </servlet-mapping>-->
 </web-app>
