@@ -4,18 +4,24 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import packt.com.Util;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class TodoServlet extends HttpServlet {
+public class TodosHandlers {
 
     private static final Gson GSON = new GsonBuilder().create();
 
-    @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public static void listTodos(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+        String json = GSON.toJson(Todos.todos.values());
+
+        resp.setStatus(200);
+        resp.setHeader("Content-Type", "application/json");
+        resp.getOutputStream().println(json);
+    }
+
+    public static void fetchTodo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String uri = req.getRequestURI();
         Long id = Long.parseLong(uri.substring("/todos/".length()));
 
@@ -26,29 +32,34 @@ public class TodoServlet extends HttpServlet {
         resp.getOutputStream().println(json);
     }
 
-    @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String uri = req.getRequestURI();
-        Long id = Long.parseLong(uri.substring("/todos/".length()));
 
-        if (Todos.todos.containsKey(id)) {
-            resp.setStatus(422);
-            resp.getOutputStream().println("You cannot created TODO with id " + id + " because it exists!");
-        }
-
+    public static void createTodoWithoutId(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String json = Util.readInputStream(req.getInputStream());
         Todo todo = GSON.fromJson(json, Todo.class);
-        todo.setId(id);
+
+        todo.setId(Todos.nextId());
 
         Todos.todos.put(todo.getId(), todo);
 
         resp.setStatus(201);
         resp.setHeader("Content-Type", "application/json");
-        resp.getOutputStream().println(json);
+        resp.getOutputStream().println(GSON.toJson(todo));
     }
 
-    @Override
-    public void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public static void createTodoWithId(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String json = Util.readInputStream(req.getInputStream());
+        Todo todo = GSON.fromJson(json, Todo.class);
+
+        todo.setId(Todos.nextId());
+
+        Todos.todos.put(todo.getId(), todo);
+
+        resp.setStatus(201);
+        resp.setHeader("Content-Type", "application/json");
+        resp.getOutputStream().println(GSON.toJson(todo));
+    }
+
+    public static void updateTodo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String uri = req.getRequestURI();
         Long id = Long.parseLong(uri.substring("/todos/".length()));
 
@@ -68,8 +79,8 @@ public class TodoServlet extends HttpServlet {
         resp.getOutputStream().println(GSON.toJson(json));
     }
 
-    @Override
-    public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+    public static void deleteTodo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String uri = req.getRequestURI();
         Long id = Long.parseLong(uri.substring("/todos/".length()));
 
@@ -81,3 +92,4 @@ public class TodoServlet extends HttpServlet {
         resp.getOutputStream().println(json);
     }
 }
+
