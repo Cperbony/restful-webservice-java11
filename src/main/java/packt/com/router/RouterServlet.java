@@ -1,5 +1,8 @@
 package packt.com.router;
 
+import com.google.gson.GsonBuilder;
+import packt.com.database.DB;
+import packt.com.todo.Todo;
 import packt.com.todo.TodosHandlers;
 
 import javax.servlet.http.HttpServlet;
@@ -7,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class RouteServlet extends HttpServlet {
+public class RouterServlet extends HttpServlet {
 
     private static final Map<RouteDefinition, RouteHandler> routes = new HashMap<>();
 
@@ -24,6 +28,12 @@ public class RouteServlet extends HttpServlet {
         addRoute("POST /todos/id", TodosHandlers::createTodoWithId);
         addRoute("PUT /todos/:id", TodosHandlers::updateTodo);
         addRoute("DELETE /todos/:id", TodosHandlers::deleteTodo);
+
+//        addRoute("GET /foo", ((req, resp) -> {
+//            List<Todo> all = DB.db.findAll(Todo.class, "SELECT * FROM Todos");
+//            resp.setStatus(200);
+//            resp.getWriter().println(new GsonBuilder().create().toJson(all));
+//        }));
 
         addRoute("GET /hello/:username", (req, resp) -> {
             String username = req.getRequestURI().substring("/hello/".length());
@@ -73,7 +83,7 @@ public class RouteServlet extends HttpServlet {
         String actualToken = "even_more_secret_stuff";
         boolean isVerified = actualToken.equals(token);
 
-        if(!isVerified){
+        if (!isVerified) {
             resp.getWriter().println("Sorry, authentication required.");
             resp.setStatus(401);
             return;

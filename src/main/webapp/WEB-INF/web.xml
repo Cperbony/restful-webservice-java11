@@ -8,7 +8,7 @@
 
     <servlet>
         <servlet-name>RouteServlet</servlet-name>
-        <servlet-class>packt.com.router.RouteServlet</servlet-class>
+        <servlet-class>packt.com.router.RouterServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
