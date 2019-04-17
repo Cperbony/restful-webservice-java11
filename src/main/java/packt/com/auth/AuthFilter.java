@@ -14,19 +14,18 @@ public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
+        HttpServletResponse resp = (HttpServletResponse) response;
 
         String token = req.getHeader("Authorization");
         String actualToken = "very_secret_stuff"; //TODO in actual app. fetch from database
+        boolean isVerified = actualToken.equals(token);
 
-        if(actualToken.equals(token)){
+        if(isVerified){
             chain.doFilter(request, response);
         } else {
-            res.getWriter().println("Sorry, authentication required.");
-            res.setStatus(401);
+            resp.getWriter().println("Sorry, authentication required.");
+            resp.setStatus(401);
         }
-
-
     }
 
     @Override

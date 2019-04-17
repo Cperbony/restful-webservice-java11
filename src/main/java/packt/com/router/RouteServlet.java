@@ -67,6 +67,18 @@ public class RouteServlet extends HttpServlet {
     }
 
     private void genericHandler(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String token = req.getHeader("Authorization");
+
+        //TODO in actual app. fetch from database
+        String actualToken = "even_more_secret_stuff";
+        boolean isVerified = actualToken.equals(token);
+
+        if(!isVerified){
+            resp.getWriter().println("Sorry, authentication required.");
+            resp.setStatus(401);
+            return;
+        }
+
         for (Map.Entry<RouteDefinition, RouteHandler> route : routes.entrySet()) {
             if (route.getKey().matches(req)) {
                 route.getValue().execute(req, resp);
